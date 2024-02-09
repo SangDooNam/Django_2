@@ -92,10 +92,11 @@ class Task1(TestCase):
         """Test the style field."""
         params = self.basic_params.copy()
         # The song_style allows values when the type is song
-        params.update({"type": "song", "song_style": "Funky"})
+        params.update({"type": "song", "song_style": "funky"})
         try:
             obj = self.model.objects.create(**params)
-        except Exception:
+        except Exception as e:
+            print(f"Exception occurred: {e}")
             obj = None
         self.assertIsInstance(obj, self.model)
         # No style is allowed when the type is podcast
